@@ -1,7 +1,17 @@
 ﻿@page "/"
 @inject HttpClient http
+@inject ServiceSingleton singleton
+@inject ServicoScoped scoped
+@inject ServicoTransient transient
 
 <Tarefas tarefas="GetTarefas()" Titulo="Lista de tarefas"/>
+
+<p>Current count: @currentCount</p>
+<p> Singleton count: @singleton.Valor</p>
+<p> Scoped count: @scoped.Valor</p>
+<p> Transient count: @transient.Valor</p>
+
+<button @onclick="@IncrementCount">Aumentar valor</button>
 
 @code {
 
@@ -10,6 +20,17 @@
     protected override async Task OnInitializedAsync()
     {
         tarefas = await http.GetJsonAsync<List<Tarefa>>("tarefas.json");
+    }
+
+    int currentCount = 0;
+
+    void IncrementCount()
+    {
+        currentCount++;
+        singleton.Valor =+ currentCount;
+        transient.Valor=+ currentCount;
+        scoped.Valor=+ currentCount;
+
     }
 
     private List<Tarefa> GetTarefas()
