@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject HttpClient http
+@inject IRepositorio repositorio
 @inject ServiceSingleton singleton
 @inject ServicoScoped scoped
 @inject ServicoTransient transient
@@ -17,9 +17,9 @@
 
     List<Tarefa> tarefas = new List<Tarefa>();
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        tarefas = await http.GetJsonAsync<List<Tarefa>>("tarefas.json");
+        tarefas = repositorio.ObterTarefas();
     }
 
     int currentCount = 0;
