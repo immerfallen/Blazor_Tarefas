@@ -1,0 +1,38 @@
+﻿@page "/ciclodevida"
+@implements IDisposable
+
+<h1>@Titulo</h1>
+<h2>Fui renderizado as @HoraRenderizacao</h2>
+
+@code {
+    public string Titulo { get; set; }
+
+    public  string HoraRenderizacao { get; set; }
+
+    protected override void OnInitialized()
+    {
+        HoraRenderizacao = DateTime.Now.ToLongTimeString();
+        Console.WriteLine($"Iniciacao do componente as {HoraRenderizacao}");
+        Titulo = "Ola Blazor";
+    }
+
+    protected override void OnParametersSet()
+    {
+        HoraRenderizacao = DateTime.Now.ToLongTimeString();
+        Console.WriteLine($"parmater set as {HoraRenderizacao}");       
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        HoraRenderizacao = DateTime.Now.ToLongTimeString();
+        Console.WriteLine($"Executei o on after render: primeira vez  {firstRender}");
+        Console.WriteLine($"Termino renderizacao do componente {HoraRenderizacao}");
+    }
+
+    public void Dispose()
+    {
+        HoraRenderizacao = DateTime.Now.ToLongTimeString();
+        Console.WriteLine($"Liberacao do componente as {HoraRenderizacao}");
+    } 
+
+}
