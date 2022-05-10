@@ -1,5 +1,44 @@
-﻿<h3>ListaGenerica</h3>
+﻿@typeparam Titem
+
+@if (ListaItem == null)
+{
+    if (Carregando == null)
+    {
+        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+        <h1>Carregando...</h1>
+    }
+    else
+    {
+        @Carregando
+    }
+}
+else if (!ListaItem.Any())
+{
+    {
+        if (SemRegistro == null)
+        {
+            <img src="https://media.giphy.com/media/3o7WTDH9gYo71TurPq/giphy.gif" />
+            <h1>Ainda não existem registros</h1>
+        }
+        else
+        {
+            @SemRegistro
+        }
+    }
+}
+else
+{
+    foreach (var elem in ListaItem)
+    {
+        @Lista(elem)
+    }
+}
 
 @code {
+    [Parameter] public RenderFragment Carregando { get; set; }
+    [Parameter] public RenderFragment SemRegistro { get; set; }
+    [Parameter] public List<Titem> ListaItem { get; set; }
+    [Parameter] public RenderFragment<Titem> Lista {get;set;}
+
 
 }
