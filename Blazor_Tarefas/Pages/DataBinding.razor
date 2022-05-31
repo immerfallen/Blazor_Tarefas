@@ -1,7 +1,4 @@
 ﻿@page "/databinding"
-@inject ServiceSingleton singleton
-@inject ServicoScoped scoped
-@inject ServicoTransient transient
 
 <h1>@nome</h1>
 
@@ -10,9 +7,6 @@
 <input @bind="nome" />
 <hr />
 <input @bind-value="nome" @bind-value:event="oninput"/>
-<p>Singleton @singleton.Valor</p>
-<p>Scoped @scoped.Valor</p>
-<p>Transient @transient.Valor</p>
 
 
 

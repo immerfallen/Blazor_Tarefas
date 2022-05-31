@@ -1,20 +1,10 @@
 ﻿@page "/"
 @inject IRepositorio repositorio
-@inject ServiceSingleton singleton
-@inject ServicoScoped scoped
-@inject ServicoTransient transient
+@inject IJSRuntime js
 
 <Tarefas tarefas="GetTarefas()" Titulo="Lista de tarefas"/>
 
-<p>Current count: @currentCount</p>
-<p> Singleton count: @singleton.Valor</p>
-<p> Scoped count: @scoped.Valor</p>
-<p> Transient count: @transient.Valor</p>
-
-<button @onclick="@IncrementCount">Aumentar valor</button>
-
 @code {
-
     List<Tarefa> tarefas = new List<Tarefa>();
 
     protected override void OnInitialized()
@@ -22,20 +12,8 @@
         tarefas = repositorio.ObterTarefas();
     }
 
-    int currentCount = 0;
-
-    void IncrementCount()
-    {
-        currentCount++;
-        singleton.Valor =+ currentCount;
-        transient.Valor=+ currentCount;
-        scoped.Valor=+ currentCount;
-
-    }
-
     private List<Tarefa> GetTarefas()
     {
         return tarefas;
     }
-
 }

@@ -5,7 +5,7 @@
     if (Carregando == null)
     {
         <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
-        <h1>Carregando...</h1>
+        <text> Carregando </text>
     }
     else
     {
@@ -14,23 +14,21 @@
 }
 else if (!ListaItem.Any())
 {
+    if (SemRegistro == null)
     {
-        if (SemRegistro == null)
-        {
-            <img src="https://media.giphy.com/media/3o7WTDH9gYo71TurPq/giphy.gif" />
-            <h1>Ainda não existem registros</h1>
-        }
-        else
-        {
-            @SemRegistro
-        }
+        <img src="https://media.giphy.com/media/3o7WTDH9gYo71TurPq/giphy.gif" />
+        <text> Não existem tarefas </text>
+    }
+    else
+    {
+        @SemRegistro
     }
 }
 else
 {
-    foreach (var elem in ListaItem)
+    foreach(var elemento in ListaItem)
     {
-        @Lista(elem)
+        @Lista(elemento)
     }
 }
 
@@ -38,7 +36,6 @@ else
     [Parameter] public RenderFragment Carregando { get; set; }
     [Parameter] public RenderFragment SemRegistro { get; set; }
     [Parameter] public List<Titem> ListaItem { get; set; }
-    [Parameter] public RenderFragment<Titem> Lista {get;set;}
-
+    [Parameter] public RenderFragment<Titem> Lista { get; set; }
 
 }
