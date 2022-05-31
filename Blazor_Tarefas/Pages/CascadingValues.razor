@@ -1,6 +1,6 @@
 ﻿@page "/cascading"
 
-<h1 style="background-color: @CorFundo; font-size: @TamanhoFonte">Cascading Values</h1>
+<h1 style="background-color: @Config.CorFundo; font-size: @Config.TamanhoFonte">Cascading Values</h1>
 
 <CascadingValue Value="@Resposta">
     <Pergunta></Pergunta>
@@ -11,6 +11,6 @@
 }
 
 @code{
-    [CascadingParameter(Name ="CorFundo")] string CorFundo { get; set; }
-    [CascadingParameter(Name ="TamanhoFonte")] string TamanhoFonte { get; set; }
+    
+    [CascadingParameter] Config Config { get; set; }
 }
