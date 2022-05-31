@@ -10,6 +10,16 @@
     </div>
 
     <div class="content px-4">
-        @Body
+        <CascadingValue Value="@Cor" Name="CorFundo">
+            <CascadingValue Value="@Tamanho" Name="TamanhoFonte">
+                @Body
+            </CascadingValue>
+        </CascadingValue>
+        
     </div>
 </div>
+
+@code{
+    private string Cor = "cyan";
+    private string Tamanho = "120px";
+}

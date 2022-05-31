@@ -1,0 +1,16 @@
+﻿@page "/cascading"
+
+<h1 style="background-color: @CorFundo; font-size: @TamanhoFonte">Cascading Values</h1>
+
+<CascadingValue Value="@Resposta">
+    <Pergunta></Pergunta>
+</CascadingValue>
+
+@code{
+    string Resposta = "A parada é irada!!";
+}
+
+@code{
+    [CascadingParameter(Name ="CorFundo")] string CorFundo { get; set; }
+    [CascadingParameter(Name ="TamanhoFonte")] string TamanhoFonte { get; set; }
+}
