@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime js
 
-<h1>@Titulo</h1>
+<h1 style="background-color: @Config.CorFundo">@Titulo</h1>
 
 <table class="table">
     <thead>
@@ -38,6 +38,7 @@
 
     [Parameter] public List<Tarefa> tarefas { get; set; }
     [Parameter] public string Titulo { get; set; }
+    [CascadingParameter] Config Config { get; set; }
 
     private string novaTarefa = "";
 

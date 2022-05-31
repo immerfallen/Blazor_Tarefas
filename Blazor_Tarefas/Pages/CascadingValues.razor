@@ -2,9 +2,33 @@
 
 <h1 style="background-color: @Config.CorFundo; font-size: @Config.TamanhoFonte">Cascading Values</h1>
 
-<CascadingValue Value="@Resposta">
+<CascadingValue Value="@Resposta" IsFixed="true">
     <Pergunta></Pergunta>
 </CascadingValue>
+
+<div style="display: flex">
+    Selecione a cor
+    <div style="width: 150px">         
+        <select  @bind="@Config.CorFundo" class="form-control" style="margin-top: 15px">
+            <option value="green">Verde</option>
+            <option value="white">Branco</option>
+            <option value="red">Vermelho</option>
+            <option value="orange">Laranja</option>
+            <option value="yellow">Amarelo</option>
+        </select>
+    </div>
+
+    Selecione o tamanho da fonte
+    <div style="width: 150px"> 
+        <select  @bind="@Config.TamanhoFonte" class="form-control" style="margin-top: 15px">
+            <option value="20px">20</option>
+            <option value="40px">40</option>
+            <option value="60px">60</option>
+            <option value="80px">80</option>
+            <option value="100px">100</option>
+        </select>
+    </div>
+</div>
 
 @code{
     string Resposta = "A parada é irada!!";
