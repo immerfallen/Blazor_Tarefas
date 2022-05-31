@@ -1,4 +1,7 @@
-﻿
+﻿@inject IJSRuntime js
+
+
+
 <h1>@Titulo</h1>
 
     <table class="table">
@@ -36,12 +39,24 @@
 
     private string novaTarefa = "";
 
-    private void RemoveTarefa(Tarefa tarefa)
+    private async void RemoveTarefa(Tarefa tarefa)
     {
-        tarefas.Remove(tarefas.First(x => x.ID == tarefa.ID));
+        //tarefas.Remove(tarefas.First(x => x.ID == tarefa.ID));
+
+        //var resultado = await js.InvokeAsync<bool>("confirm", "Excluir tarefa? ");
+
+        var resultado = ((IJSInProcessRuntime)js).Invoke<bool>("confirm", "Excluir essa tarefa?");
+
+        if (resultado)
+        {
+            tarefas.Remove(tarefa);
+            // await js.InvokeVoidAsync("alert", "Tarefa excluída");
+            await js.InvokeAsync<object>("MostraAlerta", "Legal. Tarefa excluída");
+        }
     }
 
-    void AdicionarNovaTarefa()
+    static int totalTarefas = 0;
+    async void AdicionarNovaTarefa()
     {
         if (!string.IsNullOrWhiteSpace(novaTarefa))
         {
@@ -52,6 +67,14 @@
                 ID = Guid.NewGuid()
             });
             novaTarefa = "";
+            totalTarefas = tarefas.Count();
         }
+        await js.InvokeVoidAsync("getTotalTarefas");
+    }
+
+    [JSInvokable]
+    public static Task<int> ObterTotalTarefa()
+    {
+        return Task.FromResult(totalTarefas);
     }
 }
