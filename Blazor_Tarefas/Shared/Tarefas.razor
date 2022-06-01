@@ -49,19 +49,21 @@
 
     private void RemoveTarefa(Tarefa tarefa)
     {
-        //confirmacao.Exibir();
-        //tarefaRemover = tarefa;
+        confirmacao.Exibir();
+        tarefaRemover = tarefa;
+
+
         //var resultado =
         //    await js.InvokeAsync<bool>("confirm", "Excluir Tarefa ?");
 
-        var resultado = ((IJSInProcessRuntime)js).Invoke<bool>("confirm", "Excluir esta tarefa ?");
+        //var resultado = ((IJSInProcessRuntime)js).Invoke<bool>("confirm", "Excluir esta tarefa ?");
 
-        if (resultado)
-        {
-            tarefas.Remove(tarefa);
-            //await js.InvokeVoidAsync("alert", "Tarefa excluida com sucesso");
-            //await js.InvokeAsync<object>("MostraAlerta", "Ok, tarefa excluida !!!");
-        }
+        //if (resultado)
+        //{
+        //    tarefas.Remove(tarefa);
+        //    await js.InvokeVoidAsync("alert", "Tarefa excluida com sucesso");
+        //    await js.InvokeAsync<object>("MostraAlerta", "Ok, tarefa excluida !!!");
+        //}
     }
 
     void RemoverTarefaConfirmacao()

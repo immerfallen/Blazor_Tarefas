@@ -11,10 +11,12 @@
 ></Home>
 
 @code {
+    Tarefas teste;
+
     List<Tarefa> tarefas = new List<Tarefa>();
 
     protected override void OnInitialized()
-    {
+    {       
         tarefas = repositorio.ObterTarefas();
     }
 
