@@ -1,0 +1,30 @@
+﻿@page "/localstorage"
+@inject ILocalStorageService localStore
+
+<h3>Minhas notas no local storage</h3>
+
+<textarea @bind="minhasNotasPessoais"/>
+<br/>
+<button @onclick="AtualizaLocalStorage">Salvar</button>
+<button @onclick="LimparLocalStorage">Limpar</button>
+
+@code {
+    string minhasNotasPessoais;
+    const string notaKey = "maro";
+
+    protected override async Task OnInitializedAsync()
+    {
+        minhasNotasPessoais = await localStore.GetItemAsync<string>(notaKey);
+    }
+
+    public async void AtualizaLocalStorage()
+    {
+        await localStore.SetItemAsync(notaKey, minhasNotasPessoais);
+    }
+
+    public async void LimparLocalStorage()
+    {
+        minhasNotasPessoais = "";
+        await localStore.ClearAsync();
+    }
+}
