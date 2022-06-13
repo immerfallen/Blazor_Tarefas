@@ -2,7 +2,14 @@
 
 <h3>Mee primeiro formulário Blazor</h3>
 
-<EditForm Model="@usuario">
+@if(ultimoSubmit != null)
+{
+    <h2>
+        Status do último submit: @ultimoSubmit
+    </h2>
+}
+
+<EditForm Model="@usuario" OnValidSubmit="@ValidFormSubmetido" OnInvalidSubmit="@InvalidFormSubmetido">
     <DataAnnotationsValidator />
     <ValidationSummary/>
 
@@ -31,7 +38,15 @@
 @code {
     Usuario usuario = new Usuario();
 
-    //private void Submeter(){
-    //    Console.WriteLine($"{usuario.Nome}, {usuario.Email}, {usuario.Idade}");
-    //}
+    string ultimoSubmit;
+
+    void ValidFormSubmetido(EditContext editContext)
+    {
+        ultimoSubmit = $"OnValidSubmit foi executado." + $"O formulário é válido = {editContext.Validate()}";
+    }
+
+    void InvalidFormSubmetido(EditContext editContext)
+    {
+        ultimoSubmit = $"OnInvalidSubmit foi executado." + $"O formulário é válido = {editContext.Validate()}";
+    }
 }
