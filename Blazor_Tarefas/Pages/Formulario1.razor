@@ -2,25 +2,32 @@
 
 <h3>Mee primeiro formulário Blazor</h3>
 
-<EditForm Model="@usuario" OnSubmit="@Submeter">
+<EditForm Model="@usuario">
+    <DataAnnotationsValidator />
 
-    <label form="nome">Nome</label>
-    <InputText id="nome" @bind-Value="usuario.Nome"></InputText>
-    <br/>
-    <label form="email">E-mail</label>
-    <InputText id="email" @bind-Value="usuario.Email"></InputText>
-    <br/>
-    <label form="idade">Idade</label>
-    <InputNumber id="idade" @bind-Value="usuario.Idade"></InputNumber>
-    <br/>
-    <input type="submit" value="Enviar formulário" class="btn btn-primary" />
+    <div class="form-group">
+        <label form="nome">Nome</label>
+        <InputText id="nome" @bind-Value="usuario.Nome" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label form="email">E-mail</label>
+        <InputText id="email" @bind-Value="usuario.Email" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label form="idade">Idade</label>
+        <InputNumber id="idade" @bind-Value="usuario.Idade" class="form-control"></InputNumber>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Enviar formulário" class="btn btn-primary" />
+    </div>
+
 
 </EditForm>
 
 @code {
     Usuario usuario = new Usuario();
 
-    private void Submeter(){
-        Console.WriteLine($"{usuario.Nome}, {usuario.Email}, {usuario.Idade}    ");
-    }
+    //private void Submeter(){
+    //    Console.WriteLine($"{usuario.Nome}, {usuario.Email}, {usuario.Idade}");
+    //}
 }
